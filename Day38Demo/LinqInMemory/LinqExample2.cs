@@ -37,16 +37,16 @@ public static class LinqExample2
         Console.WriteLine("\n** LINQ methods => Student Scoring > 90%");
         foreach (var student in studentsWith90) { Console.WriteLine(student.GetFormattedData()); }
 
-        // Display Surname of all female students who have score more than 84% in 10th
+        // Display FullName of all female students who have score more than 84% in 10th
         // SELECT Substr(FullName, xyz) from Student
         // where (Student.FullName like 'Mrs%' or Student.FullName like 'Miss%')
         // and Student.Percentage10Th > 84
         var femaleStudentsWith84 = students.Where(s => 
                                     (s.FullName.Contains("Mrs") || s.FullName.Contains("Miss")) && s.Percentage10Th > 84)
-                                    .Select(s => s.FullName.Substring(s.FullName.LastIndexOf(' ') + 1));
+                                    .Select(s => s.FullName);
 
         Console.WriteLine("\n** LINQ methods => Surname of Female Student Scoring > 84%");
-        foreach (var studentSurName in femaleStudentsWith84) { Console.WriteLine(studentSurName); }
+        foreach (var studentName in femaleStudentsWith84) { Console.WriteLine(studentName); }
     }
 
     private static void LinqQueryExpressionDemo(List<Student> students)
@@ -59,13 +59,13 @@ public static class LinqExample2
         Console.WriteLine("\n** LINQ query expression => Student Scoring > 90%");
         foreach (var student in studentsWith90) { Console.WriteLine(student.GetFormattedData()); }
 
-        // Display Surname of all female students who have score more than 84% in 10th
+        // Display FullName of all female students who have score more than 84% in 10th
         var femaleStudentsWith84 = from s in students
                                    where (s.FullName.Contains("Mrs") || s.FullName.Contains("Miss")) && s.Percentage10Th > 84
-                                   select s.FullName.Substring(s.FullName.LastIndexOf(' ') + 1);
+                                   select s.FullName;
 
         Console.WriteLine("\n** LINQ methods => Surname of Female Student Scoring > 84%");
-        foreach (var studentSurName in femaleStudentsWith84) { Console.WriteLine(studentSurName); }
+        foreach (var studentName in femaleStudentsWith84) { Console.WriteLine(studentName); }
     }
 }
 
